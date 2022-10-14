@@ -2,10 +2,10 @@
 // import { FriendList } from 'FriendList/FriendList';
 import { TransactionHistory } from 'TransactionHistory/TransactionHistory';
 // import { Statistics } from 'Statistics/Statistics';
-// import user from '../user.json';
-// import data from '../data.json';
-// import friendsList from '../friends.json';
-import transactions from '../transactions.json';
+// import user from '../data/user.json';
+// import data from '../data/data.json';
+// import friendsList from '../data/friends.json';
+import transactions from '../data/transactions.json';
 
 export const App = () => {
   return (
@@ -23,9 +23,9 @@ export const App = () => {
         location={user.location}
         avatar={user.avatar}
         stats={user.stats}
-      /> */}
-      {/* <Statistics title="Upload stats" stats={data} /> */}
-      {/* <FriendList friends={friendsList} /> */}
+      />
+      <Statistics title="Upload stats" stats={data} />
+      <FriendList friends={friendsList} /> */}
       <TransactionHistory items={transactions} />
     </div>
   );
