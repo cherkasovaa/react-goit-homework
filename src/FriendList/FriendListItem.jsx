@@ -7,6 +7,7 @@ const Box = styled.li`
   width: 250px;
   margin-bottom: 10px;
   padding: 12px 15px;
+  background: #ffffff;
   border-radius: 2px;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.17);
 `;
