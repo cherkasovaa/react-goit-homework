@@ -2,7 +2,11 @@ import { Transaction } from './Transaction';
 import { BoxStyled, CellStyled } from './TransactionHistory.styled';
 
 export const TransactionHistory = ({ items }) => {
-  const titles = ['Type', 'Amount', 'Currency'];
+  const titles = [
+    { id: 'id-1', title: 'type' },
+    { id: 'id-2', title: 'amount' },
+    { id: 'id-3', title: 'currency' },
+  ];
 
   return (
     <BoxStyled>
@@ -17,8 +21,8 @@ export const TransactionHistory = ({ items }) => {
       >
         <thead>
           <tr>
-            {titles.map((title, i) => (
-              <CellStyled key={i} bgcolor="#00bcd5" color="#ffffff" isBold>
+            {titles.map(({ id, title }) => (
+              <CellStyled key={id} bgcolor="#00bcd5" color="#ffffff" isBold>
                 {title.toUpperCase()}
               </CellStyled>
             ))}
@@ -26,15 +30,15 @@ export const TransactionHistory = ({ items }) => {
         </thead>
 
         <tbody>
-          {items.map((item, i) => {
+          {items.map(({ id, type, amount, currency }, i) => {
             let color = i % 2 === 0 ? '#ffffff' : '#e9e9e9';
 
             return (
               <Transaction
-                key={i}
-                type={item.type}
-                amount={item.amount}
-                currency={item.currency}
+                key={id}
+                type={type}
+                amount={amount}
+                currency={currency}
                 bgcolor={color}
               />
             );
