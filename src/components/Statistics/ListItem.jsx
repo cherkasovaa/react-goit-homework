@@ -1,21 +1,4 @@
-const { default: styled } = require('styled-components');
-
-const Item = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: calc(100% / 4);
-  flex-grow: 1;
-  padding: 10px;
-  background: ${props => props.color || 'red'};
-  box-sizing: border-box;
-`;
-
-const Text = styled.span`
-  font-size: ${props => props.size || '0.8rem'};
-  color: #fae1e4;
-`;
+import { ItemStyled, TextStyled } from './Statistic.styled';
 
 export const ListItem = ({label, percentage}) => {
   const generateColor = () => {
@@ -30,11 +13,11 @@ export const ListItem = ({label, percentage}) => {
   };
 
   return (
-    <Item className="item" color={generateColor()}>
-      <Text className="label">{label}</Text>
-      <Text className="percentage" size="1.2rem">
+    <ItemStyled className="item" color={generateColor()}>
+      <TextStyled className="label">{label}</TextStyled>
+      <TextStyled className="percentage" size="1.2rem">
         {percentage}%
-      </Text>
-    </Item>
+      </TextStyled>
+    </ItemStyled>
   );
 };

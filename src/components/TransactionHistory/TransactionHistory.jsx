@@ -1,27 +1,11 @@
-import styled from 'styled-components';
 import { Transaction } from './Transaction';
-
-const Box = styled.div`
-  height: 100%;
-  padding: 30px 0;
-`;
-
-const Cell = styled.th`
-  font-size: 1rem;
-  font-weight: ${props => (props.isBold ? 'bold' : '400')};
-  color: ${props => props.color || '#858a8e'};
-  border: 1px solid black;
-  padding: 10px;
-  text-align: center;
-  width: calc(100% / 3);
-  background: ${props => props.bgcolor || '#ffffff'};
-`;
+import { BoxStyled, CellStyled } from './TransactionHistory.styled';
 
 export const TransactionHistory = ({ items }) => {
   const titles = ['Type', 'Amount', 'Currency'];
 
   return (
-    <Box>
+    <BoxStyled>
       <table
         className="transaction-history"
         style={{
@@ -34,9 +18,9 @@ export const TransactionHistory = ({ items }) => {
         <thead>
           <tr>
             {titles.map((title, i) => (
-              <Cell key={i} bgcolor="#00bcd5" color="#ffffff" isBold>
+              <CellStyled key={i} bgcolor="#00bcd5" color="#ffffff" isBold>
                 {title.toUpperCase()}
-              </Cell>
+              </CellStyled>
             ))}
           </tr>
         </thead>
@@ -57,6 +41,6 @@ export const TransactionHistory = ({ items }) => {
           })}
         </tbody>
       </table>
-    </Box>
+    </BoxStyled>
   );
 };

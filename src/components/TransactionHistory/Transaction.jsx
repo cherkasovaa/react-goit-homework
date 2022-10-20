@@ -1,15 +1,4 @@
-import styled from 'styled-components';
-
-const Cell = styled.th`
-  font-size: 1rem;
-  font-weight: ${props => (props.isBold ? 'bold' : '400')};
-  color: ${props => props.color || '#858a8e'};
-  border: 1px solid black;
-  padding: 10px;
-  text-align: center;
-  width: calc(100% / 3);
-  background: ${props => props.bgcolor || '#ffffff'};
-`;
+import { CellStyled } from './TransactionHistory.styled';
 
 export const Transaction = ({ type, amount, currency, bgcolor }) => {
   const capitalize = str => {
@@ -18,9 +7,9 @@ export const Transaction = ({ type, amount, currency, bgcolor }) => {
 
   return (
     <tr>
-      <Cell bgcolor={bgcolor}>{capitalize(type)}</Cell>
-      <Cell bgcolor={bgcolor}>{amount}</Cell>
-      <Cell bgcolor={bgcolor}>{currency}</Cell>
+      <CellStyled bgcolor={bgcolor}>{capitalize(type)}</CellStyled>
+      <CellStyled bgcolor={bgcolor}>{amount}</CellStyled>
+      <CellStyled bgcolor={bgcolor}>{currency}</CellStyled>
     </tr>
   );
 };
