@@ -6,8 +6,8 @@ export const Statistics = ({ title, stats }) => (
     {title && <TitleStyled className="title">{title}</TitleStyled>}
 
     <ListStyled className="stat-list">
-      {stats.map((el, i) => (
-        <ListItem key={i} label={el.label} percentage={el.percentage} />
+      {stats.map(({ id, label, percentage }) => (
+        <ListItem key={id} label={label} percentage={percentage} />
       ))}
     </ListStyled>
   </BoxStyled>
