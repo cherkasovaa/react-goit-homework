@@ -5,6 +5,8 @@ export const BoxStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
 `;
 
 export const WrapperStyled = styled(BoxStyled)`
