@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { BoxStyled, ButtonStyled, TitleStyled } from './Feedback.styled';
+import { Statistics } from './Statistics';
 
 export class Feedback extends Component {
   state = {
@@ -44,16 +45,13 @@ export class Feedback extends Component {
 
         <BoxStyled fDirection="column">
           <TitleStyled>Statistics</TitleStyled>
-          <BoxStyled as="ul" fDirection="column">
-            <li>Good: {good}</li>
-            <li>Neutral: {neutral}</li>
-            <li>Bad: {bad}</li>
-            <li>Total: {this.countTotalFeedback()}</li>
-            <li>
-              Positive feedback:{' '}
-              {Math.round(this.countPositiveFeedbackPercentage())}%
-            </li>
-          </BoxStyled>
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback}
+            positivePercentage={this.countPositiveFeedbackPercentage}
+          />
         </BoxStyled>
       </BoxStyled>
     );
