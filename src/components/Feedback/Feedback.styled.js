@@ -32,4 +32,8 @@ export const ButtonStyled = styled.button`
     transform: scale(1.1);
     background-color: ${props => props.bgColor};
   }
+
+  &:active {
+    transform: scale(1);
+  }
 `;
