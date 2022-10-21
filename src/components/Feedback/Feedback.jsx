@@ -1,5 +1,7 @@
 import { Component } from 'react';
-import { BoxStyled, ButtonStyled, TitleStyled } from './Feedback.styled';
+import { BoxStyled } from './Feedback.styled';
+import { FeedbackOptions } from './FeedbackOptions';
+import { Section } from './Section';
 import { Statistics } from './Statistics';
 
 export class Feedback extends Component {
@@ -8,6 +10,12 @@ export class Feedback extends Component {
     neutral: 0,
     bad: 0,
   };
+
+  buttons = [
+    { name: 'good', bgColor: '#aaf9aa' },
+    { name: 'neutral', bgColor: '#fff6a6' },
+    { name: 'bad', bgColor: '#ffa7a6' },
+  ];
 
   handleRate = event => {
     const { name } = event.target;
@@ -25,34 +33,28 @@ export class Feedback extends Component {
 
     return (
       <BoxStyled fDirection="column">
-        <TitleStyled>Please leave feedback</TitleStyled>
+        <Section
+          title="Please leave feedback"
+          children={
+            <FeedbackOptions
+              options={this.buttons}
+              onLeaveFeedback={this.handleRate}
+            />
+          }
+        />
 
-        <BoxStyled width="300px">
-          <ButtonStyled onClick={this.handleRate} name="good" bgColor="#aaf9aa">
-            good
-          </ButtonStyled>
-          <ButtonStyled
-            onClick={this.handleRate}
-            name="neutral"
-            bgColor="#fff6a6"
-          >
-            neutral
-          </ButtonStyled>
-          <ButtonStyled onClick={this.handleRate} name="bad" bgColor="#ffa7a6">
-            bad
-          </ButtonStyled>
-        </BoxStyled>
-
-        <BoxStyled fDirection="column">
-          <TitleStyled>Statistics</TitleStyled>
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback}
-            positivePercentage={this.countPositiveFeedbackPercentage}
-          />
-        </BoxStyled>
+        <Section
+          title="Statistics"
+          children={
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback}
+              positivePercentage={this.countPositiveFeedbackPercentage}
+            />
+          }
+        />
       </BoxStyled>
     );
   }
