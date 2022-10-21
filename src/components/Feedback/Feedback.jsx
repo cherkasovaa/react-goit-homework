@@ -9,12 +9,18 @@ export class Feedback extends Component {
   };
 
   handleRate = event => {
-    const {name} = event.target;
+    const { name } = event.target;
     this.setState(prevState => ({ [name]: prevState[name] + 1 }));
-  }
+  };
+
+  countTotalFeedback = () =>
+    Object.values(this.state).reduce((acc, cur) => acc + cur, 0);
+
+  countPositiveFeedbackPercentage = () =>
+    (this.state.good / this.countTotalFeedback()) * 100 || 0;
 
   render() {
-    const {good, neutral, bad} = this.state;
+    const { good, neutral, bad } = this.state;
 
     return (
       <BoxStyled fDirection="column">
@@ -42,6 +48,11 @@ export class Feedback extends Component {
             <li>Good: {good}</li>
             <li>Neutral: {neutral}</li>
             <li>Bad: {bad}</li>
+            <li>Total: {this.countTotalFeedback()}</li>
+            <li>
+              Positive feedback:{' '}
+              {Math.round(this.countPositiveFeedbackPercentage())}%
+            </li>
           </BoxStyled>
         </BoxStyled>
       </BoxStyled>
