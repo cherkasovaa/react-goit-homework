@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { BoxStyled } from './Feedback.styled';
 import { FeedbackOptions } from './FeedbackOptions';
+import { Notification } from './Notification';
 import { Section } from './Section';
 import { Statistics } from './Statistics';
 
@@ -43,16 +44,21 @@ export class Feedback extends Component {
           }
         />
 
+        {/* {this.countTotalFeedback() === 0 ? <Notification message="There is no feedback"/> : } */}
         <Section
           title="Statistics"
           children={
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={this.countTotalFeedback}
-              positivePercentage={this.countPositiveFeedbackPercentage}
-            />
+            this.countTotalFeedback() === 0 ? (
+              <Notification message="There is no feedback" />
+            ) : (
+              <Statistics
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                total={this.countTotalFeedback}
+                positivePercentage={this.countPositiveFeedbackPercentage}
+              />
+            )
           }
         />
       </BoxStyled>
