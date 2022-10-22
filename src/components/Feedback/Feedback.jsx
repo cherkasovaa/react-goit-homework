@@ -43,8 +43,6 @@ export class Feedback extends Component {
             />
           }
         />
-
-        {/* {this.countTotalFeedback() === 0 ? <Notification message="There is no feedback"/> : } */}
         <Section
           title="Statistics"
           children={
@@ -55,8 +53,8 @@ export class Feedback extends Component {
                 good={good}
                 neutral={neutral}
                 bad={bad}
-                total={this.countTotalFeedback}
-                positivePercentage={this.countPositiveFeedbackPercentage}
+                total={this.countTotalFeedback()}
+                positivePercentage={this.countPositiveFeedbackPercentage()}
               />
             )
           }

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { TitleStyled } from './Feedback.styled';
 
 export const Section = ({ title, children }) => {
@@ -7,4 +8,9 @@ export const Section = ({ title, children }) => {
       {children}
     </>
   );
+};
+
+Section.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.element,
 };

@@ -1,4 +1,5 @@
 import { BoxStyled, ButtonStyled } from './Feedback.styled';
+import PropTypes from 'prop-types';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
@@ -15,4 +16,9 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
       ))}
     </BoxStyled>
   );
+};
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.object),
+  onLeaveFeedback: PropTypes.func,
 };
