@@ -17,9 +17,15 @@ export class Phonebook extends Component {
   };
 
   renderFilter = contact => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, contact],
-    }));
+    this.state.contacts.find(el => el.name === contact.name)
+      ? this.onAlert(contact.name)
+      : this.setState(prevState => ({
+          contacts: [...prevState.contacts, contact],
+        }));
+  };
+
+  onAlert = name => {
+    alert(`${name} is already in contacts`);
   };
 
   render() {
