@@ -4,13 +4,15 @@ export const ContactList = ({ contacts, deleteUser }) => {
   return (
     <ContactsListStyle>
       {contacts.map(({ id, name, number }) => (
-        <li key={id}>
+        <li
+          key={id}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
           {name}: {number}
-          <button
-            name={id}
-            onClick={() => deleteUser(id)}
-            style={{ marginLeft: '13px' }}
-          >
+          <button name={id} onClick={() => deleteUser(id)}>
             delete
           </button>
         </li>
