@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
+export const Title = styled.p`
+  font-size: ${props => `${props.fontSize}rem` || '1.1rem'};
+  font-weight: bold;
+  text-transform: uppercase;
+`;
+
 export const ContactsListStyle = styled.ul`
   list-style: none;
   font-size: 1.2rem;
