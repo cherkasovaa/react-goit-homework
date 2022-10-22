@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ButtonStyle, FormStyled, InputSyled } from './Phonebook.styled';
 import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
@@ -71,3 +72,7 @@ export class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  onChange: PropTypes.func,
+};
