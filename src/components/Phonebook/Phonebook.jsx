@@ -18,6 +18,7 @@ export class Phonebook extends Component {
     contacts: [],
     name: '',
     number: '',
+    filter: '',
   };
 
   handleChange = e => {
@@ -26,14 +27,14 @@ export class Phonebook extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (values, actions) => {
+  handleSubmit = () => {
     const { name, number } = this.state;
 
-    this.onAdd(name, number);
+    this.addNewContact(name, number);
     this.setState({ name: '', number: '' });
   };
 
-  onAdd = (name, number) => {
+  addNewContact = (name, number) => {
     const contact = {
       id: nanoid(),
       name,
@@ -46,7 +47,11 @@ export class Phonebook extends Component {
   };
 
   render() {
-    const { name, number, contacts } = this.state;
+    const { name, number, filter, contacts } = this.state;
+    const normalized = filter.toLowerCase();
+    const renderFilters = contacts.filter(({ name }) =>
+      name.toLowerCase().includes(normalized)
+    );
 
     return (
       <>
@@ -80,8 +85,17 @@ export class Phonebook extends Component {
         </Formik>
 
         <h2>Contacts</h2>
+        <form>
+          <h3>Find contacts by name</h3>
+          <input
+            type="text"
+            name="filter"
+            value={filter}
+            onChange={this.handleChange}
+          />
+        </form>
         <ContactsListStyle>
-          {contacts.map(({ id, name, number }) => (
+          {renderFilters.map(({ id, name, number }) => (
             <li key={id}>
               {name}: {number}
             </li>
