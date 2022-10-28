@@ -8,6 +8,23 @@ export class App extends Component {
     isFeedback: true,
   };
 
+  KEY = 'isFeedback';
+
+  componentDidMount = () => {
+    const isLocalData = localStorage.getItem(this.KEY);
+    const parseData = JSON.parse(isLocalData);
+
+    if (parseData !== null) {
+      this.setState({
+        [this.KEY]: parseData,
+      });
+    }
+  };
+
+  componentDidUpdate = prevState => {
+    localStorage.setItem(this.KEY, JSON.stringify(this.state.isFeedback));
+  };
+
   showProject = () => this.setState({ isFeedback: !this.state.isFeedback });
 
   render() {
