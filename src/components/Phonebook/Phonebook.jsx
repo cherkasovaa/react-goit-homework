@@ -10,6 +10,17 @@ export class Phonebook extends Component {
     filter: '',
   };
 
+  KEY = 'contacts';
+
+  componentDidMount = () => {
+    const parseLocalData = JSON.parse(localStorage.getItem(this.KEY)) || [];
+    this.setState({ contacts: parseLocalData });
+  };
+
+  componentDidUpdate = () => {
+    localStorage.setItem(this.KEY, JSON.stringify(this.state.contacts));
+  };
+
   handleChange = e => {
     const { name, value } = e.currentTarget;
 
