@@ -8,8 +8,8 @@ import { AppStyled } from 'components/ImageGallery/styles';
 import { Modal } from 'components/ImageGallery/Modal';
 
 export class App extends Component {
-  onSearch = e => {
-    console.log('search image:');
+  onSearch = value => {
+    console.log('search image:', value);
   };
 
   render() {
