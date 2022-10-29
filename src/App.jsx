@@ -5,7 +5,6 @@ import { Component } from 'react';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/ImageGallery/Searchbar';
 import { AppStyled } from 'components/ImageGallery/styles';
-import './components/ImageGallery/styles.css';
 import { Modal } from 'components/ImageGallery/Modal';
 
 export class App extends Component {
