@@ -53,7 +53,7 @@ export class App extends Component {
       <AppStyled>
         <Searchbar onSubmit={this.onSearch} />
         {<ImageGallery items={items} />}
-        <Button onClick={this.addImages} />
+        {items.length > 0 && <Button onClick={this.addImages} />}
       </AppStyled>
     );
   }
