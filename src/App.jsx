@@ -5,19 +5,44 @@ import { Component } from 'react';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/ImageGallery/Searchbar';
 import { AppStyled } from 'components/ImageGallery/styles';
-import { Modal } from 'components/ImageGallery/Modal';
 
 export class App extends Component {
+  state = {
+    error: null,
+    isLoaded: false,
+    items: [],
+  };
+
   onSearch = value => {
     console.log('search image:', value);
   };
 
+  componentDidMount = () => {
+    const API_KEY = '2cqmmjl9b_w_-koNZOfoDKCv9BREiEPanFNqgtp6lAI';
+    const query = 'cat';
+    const page = 2;
+    const request = `https://api.unsplash.com/search/photos?client_id=${API_KEY}&query=${query}&page=${page}`;
+    fetch(request)
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            items: result.results,
+          });
+        },
+        error => {
+          this.setState({ isLoaded: true, error });
+        }
+      );
+  };
+
   render() {
+    const { isLoaded, items } = this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.onSearch} />
-        <ImageGallery />
-        {/* <Modal /> */}
+        {isLoaded && <ImageGallery items={items} />}
       </AppStyled>
     );
   }

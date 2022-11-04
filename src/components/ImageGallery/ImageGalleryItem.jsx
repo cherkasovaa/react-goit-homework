@@ -1,9 +1,9 @@
 import { ImageGalleryItemStyled, ImageStyled } from './styles';
 
-export const ImageGalleryItem = params => {
+export const ImageGalleryItem = ({ path, description }) => {
   return (
     <ImageGalleryItemStyled>
-      <ImageStyled src="" alt="" />
+      <ImageStyled src={path} alt={description} />
     </ImageGalleryItemStyled>
   );
 };
