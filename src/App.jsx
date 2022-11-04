@@ -6,19 +6,21 @@ import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/ImageGallery/Searchbar';
 import { AppStyled } from 'components/ImageGallery/styles';
 import { Button } from 'components/ImageGallery/Button';
+import { Loader } from 'components/ImageGallery/Loader';
 
 export class App extends Component {
   state = {
     query: '',
     page: 1,
+    isLoading: false,
     error: null,
     items: [],
   };
 
   onSearch = async value => {
-    await this.setState({ query: value });
+    await this.setState({ isLoading: true, query: value });
     const data = await this.getMaterials();
-    this.setState({ items: data.results });
+    this.setState({ isLoading: false, items: data.results });
   };
 
   getMaterials = async () => {
@@ -39,21 +41,24 @@ export class App extends Component {
     e.preventDefault();
     await this.setState(prevState => ({
       page: prevState.page + 1,
+      isLoading: true,
     }));
 
     const images = await this.getMaterials();
     this.setState(prevState => ({
       items: [...prevState.items, ...images.results],
+      isLoading: false,
     }));
   };
 
   render() {
-    const { items } = this.state;
+    const { items, isLoading } = this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.onSearch} />
-        {<ImageGallery items={items} />}
-        {items.length > 0 && <Button onClick={this.addImages} />}
+        {!isLoading && <ImageGallery items={items} />}
+        {isLoading && <Loader />}
+        {items.length > 0 && !isLoading && <Button onClick={this.addImages} />}
       </AppStyled>
     );
   }
