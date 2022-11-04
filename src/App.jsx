@@ -8,19 +8,29 @@ import { AppStyled } from 'components/ImageGallery/styles';
 
 export class App extends Component {
   state = {
+    query: '',
+    page: 1,
     error: null,
     isLoaded: false,
     items: [],
   };
 
   onSearch = value => {
-    console.log('search image:', value);
+    this.setState({ query: value });
   };
 
   componentDidMount = () => {
+    this.handleSearch();
+  };
+
+  componentDidUpdate = () => {
+    this.handleSearch();
+  };
+
+  handleSearch = () => {
+    const { query, page } = this.state;
+
     const API_KEY = '2cqmmjl9b_w_-koNZOfoDKCv9BREiEPanFNqgtp6lAI';
-    const query = 'cat';
-    const page = 2;
     const request = `https://api.unsplash.com/search/photos?client_id=${API_KEY}&query=${query}&page=${page}`;
     fetch(request)
       .then(res => res.json())
