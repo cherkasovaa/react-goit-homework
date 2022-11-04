@@ -5,54 +5,55 @@ import { Component } from 'react';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/ImageGallery/Searchbar';
 import { AppStyled } from 'components/ImageGallery/styles';
+import { Button } from 'components/ImageGallery/Button';
 
 export class App extends Component {
   state = {
     query: '',
     page: 1,
     error: null,
-    isLoaded: false,
     items: [],
   };
 
-  onSearch = value => {
-    this.setState({ query: value });
+  onSearch = async value => {
+    await this.setState({ query: value });
+    const data = await this.getMaterials();
+    this.setState({ items: data.results });
   };
 
-  componentDidMount = () => {
-    this.handleSearch();
+  getMaterials = async () => {
+    const request = this.createRequest();
+    let response = await fetch(request);
+    let data = await response.json();
+    return data;
   };
 
-  componentDidUpdate = () => {
-    this.handleSearch();
-  };
-
-  handleSearch = () => {
+  createRequest = () => {
     const { query, page } = this.state;
 
     const API_KEY = '2cqmmjl9b_w_-koNZOfoDKCv9BREiEPanFNqgtp6lAI';
-    const request = `https://api.unsplash.com/search/photos?client_id=${API_KEY}&query=${query}&page=${page}`;
-    fetch(request)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            items: result.results,
-          });
-        },
-        error => {
-          this.setState({ isLoaded: true, error });
-        }
-      );
+    return `https://api.unsplash.com/search/photos?client_id=${API_KEY}&query=${query}&page=${page}`;
+  };
+
+  addImages = async e => {
+    e.preventDefault();
+    await this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
+
+    const images = await this.getMaterials();
+    this.setState(prevState => ({
+      items: [...prevState.items, ...images.results],
+    }));
   };
 
   render() {
-    const { isLoaded, items } = this.state;
+    const { items } = this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.onSearch} />
-        {isLoaded && <ImageGallery items={items} />}
+        {<ImageGallery items={items} />}
+        <Button onClick={this.addImages} />
       </AppStyled>
     );
   }
