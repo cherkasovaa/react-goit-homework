@@ -20,10 +20,18 @@ export class ImageGalleryItem extends Component {
     return (
       <>
         <ImageGalleryItemStyled>
-          <ImageStyled src={path} alt={description} onClick={this.openModal} />
+          <ImageStyled
+            src={path.small}
+            alt={description}
+            onClick={this.openModal}
+          />
         </ImageGalleryItemStyled>
         {this.state.isOpen && (
-          <Modal path={path} alt={description} onClose={this.closeModal} />
+          <Modal
+            path={path.regular}
+            alt={description}
+            onClose={this.closeModal}
+          />
         )}
       </>
     );
