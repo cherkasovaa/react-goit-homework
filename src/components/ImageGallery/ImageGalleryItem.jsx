@@ -16,14 +16,16 @@ export class ImageGalleryItem extends Component {
 
   render() {
     const { path, alt } = this.props;
+    const { isOpen } = this.state;
+    const { small, regular } = path;
 
     return (
       <>
         <ImageGalleryItemStyled>
-          <ImageStyled src={path.small} alt={alt} onClick={this.toggleModal} />
+          <ImageStyled src={small} alt={alt} onClick={this.toggleModal} />
         </ImageGalleryItemStyled>
-        {this.state.isOpen && (
-          <Modal path={path.regular} alt={alt} onClose={this.toggleModal} />
+        {isOpen && (
+          <Modal path={regular} alt={alt} onClose={this.toggleModal} />
         )}
       </>
     );
