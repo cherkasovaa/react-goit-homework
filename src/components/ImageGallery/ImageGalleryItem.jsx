@@ -33,11 +33,11 @@ export class ImageGalleryItem extends Component {
 }
 
 ImageGalleryItem.defaultProps = {
-  path: '',
+  path: {},
   alt: '',
 };
 
 ImageGalleryItem.propTypes = {
-  path: PropTypes.string,
+  path: PropTypes.objectOf(PropTypes.string),
   alt: PropTypes.string,
 };
