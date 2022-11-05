@@ -8,12 +8,10 @@ export class ImageGalleryItem extends Component {
     isOpen: false,
   };
 
-  openModal = () => {
-    this.setState({ isOpen: true });
-  };
-
-  closeModal = () => {
-    this.setState({ isOpen: false });
+  toggleModal = () => {
+    this.setState(({ isOpen }) => ({
+      isOpen: !isOpen,
+    }));
   };
 
   render() {
@@ -22,10 +20,10 @@ export class ImageGalleryItem extends Component {
     return (
       <>
         <ImageGalleryItemStyled>
-          <ImageStyled src={path.small} alt={alt} onClick={this.openModal} />
+          <ImageStyled src={path.small} alt={alt} onClick={this.toggleModal} />
         </ImageGalleryItemStyled>
         {this.state.isOpen && (
-          <Modal path={path.regular} alt={alt} onClose={this.closeModal} />
+          <Modal path={path.regular} alt={alt} onClose={this.toggleModal} />
         )}
       </>
     );
