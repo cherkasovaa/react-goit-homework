@@ -56,7 +56,8 @@ export class App extends Component {
     return (
       <AppStyled>
         <Searchbar onSubmit={this.onSearch} />
-        {isLoading ? <Loader /> : <ImageGallery items={items} />}
+        {<ImageGallery items={items} />}
+        {isLoading && <Loader />}
         {items.length > 0 && !isLoading && <Button onClick={this.addImages} />}
       </AppStyled>
     );
