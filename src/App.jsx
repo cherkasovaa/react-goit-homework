@@ -7,6 +7,7 @@ import { Searchbar } from 'components/ImageGallery/Searchbar';
 import { AppStyled } from 'components/ImageGallery/styles';
 import { Button } from 'components/ImageGallery/Button';
 import { Loader } from 'components/ImageGallery/Loader';
+import { Modal } from 'components/ImageGallery/Modal';
 
 export class App extends Component {
   state = {
