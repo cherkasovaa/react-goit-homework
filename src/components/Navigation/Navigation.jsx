@@ -1,4 +1,3 @@
-import { findByLabelText } from '@testing-library/react';
 import { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
