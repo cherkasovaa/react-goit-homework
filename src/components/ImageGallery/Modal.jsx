@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ModalStyled, OverlayStyled } from './styles';
 
 export class Modal extends Component {
@@ -33,3 +34,15 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.defaultProps = {
+  onClose: () => null,
+  path: '',
+  alt: '',
+};
+
+Modal.propTypes = {
+  onClose: PropTypes.func,
+  path: PropTypes.string,
+  alt: PropTypes.string,
+};
