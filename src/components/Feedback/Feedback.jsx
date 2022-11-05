@@ -33,7 +33,7 @@ export class Feedback extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <BoxStyled fDirection="column">
+      <BoxStyled fDirection="column" maxWidth="400px">
         <Section
           title="Please leave feedback"
           children={

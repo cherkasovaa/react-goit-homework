@@ -1,65 +1,64 @@
-// import { Feedback } from 'components/Feedback/Feedback';
-// import { BoxStyled, ButtonStyled } from 'App.styled';
-// import { Phonebook } from 'components/Phonebook/Phonebook';
 import { Component } from 'react';
-import { ImageGallery } from 'components/ImageGallery/ImageGallery';
-import { Searchbar } from 'components/ImageGallery/Searchbar';
-import { AppStyled } from 'components/ImageGallery/styles';
-import { Button } from 'components/ImageGallery/Button';
-import { Loader } from 'components/ImageGallery/Loader';
+import { Feedback } from 'components/Feedback/Feedback';
+import { BoxStyled } from 'App.styled';
+import { Phonebook } from 'components/Phonebook/Phonebook';
+import { ImageGalleryApp } from 'components/ImageGallery/ImageGalleryApp';
+import { Navigation } from 'components/Navigation/Navigation';
 
 export class App extends Component {
   state = {
-    query: '',
-    page: 1,
-    isLoading: false,
-    error: null,
-    items: [],
+    isFeedback: true,
+    project: 'feedback',
   };
 
-  onSearch = async value => {
-    await this.setState({ isLoading: true, query: value });
-    const data = await this.getMaterials();
-    this.setState({ isLoading: false, items: data.results });
+  KEY = 'project';
+
+  componentDidMount = () => {
+    const isLocalData = localStorage.getItem(this.KEY);
+    const parseData = JSON.parse(isLocalData);
+
+    if (parseData !== null) {
+      this.setState({
+        [this.KEY]: parseData,
+      });
+    }
   };
 
-  getMaterials = async () => {
-    const request = this.createRequest();
-    let response = await fetch(request);
-    let data = await response.json();
-    return data;
+  componentDidUpdate = prevState => {
+    localStorage.setItem(this.KEY, JSON.stringify(this.state.project));
   };
 
-  createRequest = () => {
-    const { query, page } = this.state;
-
-    const API_KEY = '2cqmmjl9b_w_-koNZOfoDKCv9BREiEPanFNqgtp6lAI';
-    return `https://api.unsplash.com/search/photos?client_id=${API_KEY}&query=${query}&page=${page}`;
+  showProject = id => {
+    this.setState({ project: id });
   };
 
-  addImages = async e => {
-    e.preventDefault();
-    await this.setState(prevState => ({
-      page: prevState.page + 1,
-      isLoading: true,
-    }));
+  normalizeName = value => {
+    return value
+      .split(' ')
+      .map(el => el.toLowerCase())
+      .join('');
+  };
 
-    const images = await this.getMaterials();
-    this.setState(prevState => ({
-      items: [...prevState.items, ...images.results],
-      isLoading: false,
-    }));
+  getView = value => {
+    switch (value) {
+      case 'phonebook':
+        return <Phonebook />;
+      case 'feedback':
+        return <Feedback />;
+      case 'imagegalleryapp':
+        return <ImageGalleryApp />;
+      default:
+        return '';
+    }
   };
 
   render() {
-    const { items, isLoading } = this.state;
+    const btns = ['Phonebook', 'Feedback', 'Image Gallery App'];
     return (
-      <AppStyled>
-        <Searchbar onSubmit={this.onSearch} />
-        {<ImageGallery items={items} />}
-        {isLoading && <Loader />}
-        {items.length > 0 && !isLoading && <Button onClick={this.addImages} />}
-      </AppStyled>
+      <>
+        {<Navigation showProject={this.showProject} list={btns} />}
+        <BoxStyled>{this.getView(this.state.project)}</BoxStyled>
+      </>
     );
   }
 }

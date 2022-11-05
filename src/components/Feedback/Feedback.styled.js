@@ -5,6 +5,7 @@ export const BoxStyled = styled.div`
   flex-direction: ${props => props.fDirection || 'row'};
   justify-content: space-between;
   width: ${props => props.width || '100%'};
+  max-width: ${props => props.maxWidth || '100%'};
 `;
 
 export const TitleStyled = styled.h2`
