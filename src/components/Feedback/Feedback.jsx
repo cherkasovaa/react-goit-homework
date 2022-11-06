@@ -43,7 +43,6 @@ export const Feedback = () => {
   return (
     <BoxStyled fDirection="column">
       <Section
-        title="Please leave feedback"
         children={
           <FeedbackOptions options={buttons} onLeaveFeedback={handleRate} />
         }
@@ -52,7 +51,7 @@ export const Feedback = () => {
         title="Statistics"
         children={
           countTotalFeedback() === 0 ? (
-            <Notification message="There is no feedback" />
+            <Notification />
           ) : (
             <Statistics
               good={goodMark}

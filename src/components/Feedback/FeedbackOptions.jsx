@@ -18,6 +18,11 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   );
 };
 
+FeedbackOptions.defaultProps = {
+  options: [],
+  onLeaveFeedback: () => {},
+};
+
 FeedbackOptions.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object),
   onLeaveFeedback: PropTypes.func,
