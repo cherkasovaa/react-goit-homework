@@ -6,6 +6,7 @@ export const BoxStyled = styled.div`
   justify-content: space-between;
   width: ${props => props.width || '100%'};
   max-width: ${props => props.maxWidth || '100%'};
+  margin: 0 auto;
 `;
 
 export const TitleStyled = styled.h2`
