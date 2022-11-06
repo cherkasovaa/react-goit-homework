@@ -17,6 +17,14 @@ export const Statistics = ({
   </BoxStyled>
 );
 
+Statistics.defaultProps = {
+  good: 0,
+  neutral: 0,
+  bad: 0,
+  total: 0,
+  positivePercentage: 0,
+};
+
 Statistics.propTypes = {
   good: PropTypes.number,
   neutral: PropTypes.number,

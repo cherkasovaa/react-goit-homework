@@ -10,6 +10,10 @@ export const Section = ({ title, children }) => {
   );
 };
 
+Section.defaultProps = {
+  title: 'Please leave feedback',
+};
+
 Section.propTypes = {
   title: PropTypes.string,
   children: PropTypes.element,

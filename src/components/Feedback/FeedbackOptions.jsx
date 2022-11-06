@@ -8,7 +8,7 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
         <ButtonStyled
           key={name}
           onClick={onLeaveFeedback}
-          name={name}
+          name={`${name}Mark`}
           bgColor={bgColor}
         >
           {name}
@@ -16,6 +16,11 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
       ))}
     </BoxStyled>
   );
+};
+
+FeedbackOptions.defaultProps = {
+  options: [],
+  onLeaveFeedback: () => {},
 };
 
 FeedbackOptions.propTypes = {

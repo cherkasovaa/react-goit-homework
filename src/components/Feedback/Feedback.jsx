@@ -1,65 +1,68 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { BoxStyled } from './Feedback.styled';
 import { FeedbackOptions } from './FeedbackOptions';
 import { Notification } from './Notification';
 import { Section } from './Section';
 import { Statistics } from './Statistics';
 
-export class Feedback extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
-
-  buttons = [
+export const Feedback = () => {
+  const buttons = [
     { name: 'good', bgColor: '#aaf9aa' },
     { name: 'neutral', bgColor: '#fff6a6' },
     { name: 'bad', bgColor: '#ffa7a6' },
   ];
 
-  handleRate = event => {
+  const [goodMark, setGoodMark] = useState(0);
+  const [neutralMark, setNeutralMark] = useState(0);
+  const [badMark, setBadMark] = useState(0);
+
+  const handleRate = event => {
     const { name } = event.target;
-    this.setState(prevState => ({ [name]: prevState[name] + 1 }));
+
+    switch (name) {
+      case 'goodMark':
+        setGoodMark(goodMark + 1);
+        break;
+      case 'neutralMark':
+        setNeutralMark(neutralMark + 1);
+        break;
+      case 'badMark':
+        setBadMark(badMark + 1);
+        break;
+      default:
+        return;
+    }
   };
 
-  countTotalFeedback = () =>
-    Object.values(this.state).reduce((acc, cur) => acc + cur, 0);
+  const countTotalFeedback = () =>
+    [goodMark, neutralMark, badMark].reduce((acc, cur) => acc + cur, 0);
 
-  countPositiveFeedbackPercentage = () =>
-    (this.state.good / this.countTotalFeedback()) * 100 || 0;
+  const countPositiveFeedbackPercentage = () =>
+    (goodMark / countTotalFeedback()) * 100 || 0;
 
-  render() {
-    const { good, neutral, bad } = this.state;
-
-    return (
-      <BoxStyled fDirection="column" maxWidth="400px">
-        <Section
-          title="Please leave feedback"
-          children={
-            <FeedbackOptions
-              options={this.buttons}
-              onLeaveFeedback={this.handleRate}
+  return (
+    <BoxStyled fDirection="column" maxWidth="400px">
+      <Section
+        children={
+          <FeedbackOptions options={buttons} onLeaveFeedback={handleRate} />
+        }
+      />
+      <Section
+        title="Statistics"
+        children={
+          countTotalFeedback() === 0 ? (
+            <Notification />
+          ) : (
+            <Statistics
+              good={goodMark}
+              neutral={neutralMark}
+              bad={badMark}
+              total={countTotalFeedback()}
+              positivePercentage={countPositiveFeedbackPercentage()}
             />
-          }
-        />
-        <Section
-          title="Statistics"
-          children={
-            this.countTotalFeedback() === 0 ? (
-              <Notification message="There is no feedback" />
-            ) : (
-              <Statistics
-                good={good}
-                neutral={neutral}
-                bad={bad}
-                total={this.countTotalFeedback()}
-                positivePercentage={this.countPositiveFeedbackPercentage()}
-              />
-            )
-          }
-        />
-      </BoxStyled>
-    );
-  }
-}
+          )
+        }
+      />
+    </BoxStyled>
+  );
+};
