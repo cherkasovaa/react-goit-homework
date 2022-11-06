@@ -8,7 +8,7 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
         <ButtonStyled
           key={name}
           onClick={onLeaveFeedback}
-          name={name}
+          name={`${name}Mark`}
           bgColor={bgColor}
         >
           {name}
