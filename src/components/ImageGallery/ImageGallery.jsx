@@ -17,5 +17,14 @@ ImageGallery.defaultProps = {
 };
 
 ImageGallery.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      urls: PropTypes.shape({
+        small: PropTypes.string,
+        regular: PropTypes.string,
+      }),
+      alt_description: PropTypes.string,
+    })
+  ),
 };
