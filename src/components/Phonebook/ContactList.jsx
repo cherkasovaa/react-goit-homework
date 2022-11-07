@@ -1,3 +1,4 @@
+import PropType from 'prop-types';
 import { ContactsListStyle } from './Phonebook.styled';
 
 export const ContactList = ({ contacts, deleteUser }) => {
@@ -19,4 +20,20 @@ export const ContactList = ({ contacts, deleteUser }) => {
       ))}
     </ContactsListStyle>
   );
+};
+
+ContactList.defaultProps = {
+  contacts: [],
+  deleteUser: () => {},
+};
+
+ContactList.propTypes = {
+  contacts: PropType.arrayOf(
+    PropType.shape({
+      id: PropType.string,
+      name: PropType.string,
+      number: PropType.string,
+    })
+  ),
+  deleteUser: PropType.func,
 };
