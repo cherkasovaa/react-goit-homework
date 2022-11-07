@@ -22,7 +22,18 @@ export const ContactList = ({ contacts, deleteUser }) => {
   );
 };
 
+ContactList.defaultProps = {
+  contacts: [],
+  deleteUser: () => {},
+};
+
 ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object),
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    })
+  ),
   deleteUser: PropTypes.func,
 };
