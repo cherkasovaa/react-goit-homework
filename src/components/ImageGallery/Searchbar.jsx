@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useState } from 'react';
 import {
   WrapperStyled,
   SearchFormStyled,
@@ -8,43 +8,33 @@ import {
   SearchFormButtonLabelStyled,
 } from './styles';
 
-export class Searchbar extends Component {
-  state = {
-    search: '',
-  };
+export const Searchbar = ({ onSubmit }) => {
+  const [search, setSearch] = useState('');
 
-  handleChange = e => {
-    this.setState({ search: e.currentTarget.value });
-  };
-
-  handleSearch = e => {
+  const handleChange = e => setSearch(e.currentTarget.value);
+  const handleSearch = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.search);
+    onSubmit(search);
   };
+  return (
+    <WrapperStyled>
+      <SearchFormStyled>
+        <SearchFormButtonStyled type="submit" onClick={handleSearch}>
+          <SearchFormButtonLabelStyled>Search</SearchFormButtonLabelStyled>
+        </SearchFormButtonStyled>
 
-  render() {
-    const { search } = this.state;
-
-    return (
-      <WrapperStyled>
-        <SearchFormStyled>
-          <SearchFormButtonStyled type="submit" onClick={this.handleSearch}>
-            <SearchFormButtonLabelStyled>Search</SearchFormButtonLabelStyled>
-          </SearchFormButtonStyled>
-
-          <SearchFormInputStyled
-            type="text"
-            autocomplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-            value={search}
-            onChange={this.handleChange}
-          />
-        </SearchFormStyled>
-      </WrapperStyled>
-    );
-  }
-}
+        <SearchFormInputStyled
+          type="text"
+          autocomplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+          value={search}
+          onChange={handleChange}
+        />
+      </SearchFormStyled>
+    </WrapperStyled>
+  );
+};
 
 Searchbar.defaultProps = {
   onSubmit: () => null,
