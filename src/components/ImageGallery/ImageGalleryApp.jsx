@@ -1,63 +1,57 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/ImageGallery/Searchbar';
 import { AppStyled } from 'components/ImageGallery/styles';
 import { Button } from 'components/ImageGallery/Button';
 import { Loader } from 'components/ImageGallery/Loader';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
-export class ImageGalleryApp extends Component {
-  state = {
-    query: '',
-    page: 1,
-    isLoading: false,
-    error: null,
-    items: [],
+export const ImageGalleryApp = () => {
+  const API_KEY = '2cqmmjl9b_w_-koNZOfoDKCv9BREiEPanFNqgtp6lAI';
+
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [items, setItems] = useState([]);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (query === '') {
+      return;
+    }
+
+    setIsLoading(true);
+
+    fetch(
+      `https://api.unsplash.com/search/photos?client_id=${API_KEY}&query=${query}&page=${page}`
+    )
+      .then(res => res.json())
+      .then(data => {
+        setItems(items => [...items, ...data.results]);
+        setIsLoading(false);
+      });
+  }, [query, page]);
+
+  const onSearch = value => {
+    setItems([]);
+    setQuery(value);
+    setPage(1);
   };
 
-  onSearch = async value => {
-    await this.setState({ isLoading: true, query: value });
-    const data = await this.getMaterials();
-    this.setState({ isLoading: false, items: data.results });
-  };
-
-  getMaterials = async () => {
-    const request = this.createRequest();
-    let response = await fetch(request);
-    let data = await response.json();
-    return data;
-  };
-
-  createRequest = () => {
-    const { query, page } = this.state;
-
-    const API_KEY = '2cqmmjl9b_w_-koNZOfoDKCv9BREiEPanFNqgtp6lAI';
-    return `https://api.unsplash.com/search/photos?client_id=${API_KEY}&query=${query}&page=${page}`;
-  };
-
-  addImages = async e => {
-    e.preventDefault();
-    await this.setState(prevState => ({
-      page: prevState.page + 1,
-      isLoading: true,
-    }));
-
-    const images = await this.getMaterials();
-    this.setState(prevState => ({
-      items: [...prevState.items, ...images.results],
-      isLoading: false,
-    }));
-  };
-
-  render() {
-    const { items, isLoading } = this.state;
-    return (
-      // <Phonebook />
-      <AppStyled>
-        <Searchbar onSubmit={this.onSearch} />
-        {<ImageGallery items={items} />}
-        {isLoading && <Loader />}
-        {items.length > 0 && !isLoading && <Button onClick={this.addImages} />}
-      </AppStyled>
-    );
-  }
-}
+  return (
+    <AppStyled>
+      <Searchbar onSubmit={onSearch} />
+      {<ImageGallery items={items} />}
+      {isLoading && <Loader />}
+      {items.length > 0 && !isLoading && (
+        <Button onClick={() => setPage(page => page + 1)} />
+      )}
+    </AppStyled>
+  );
+};
