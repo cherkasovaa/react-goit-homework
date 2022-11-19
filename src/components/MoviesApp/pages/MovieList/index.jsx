@@ -8,7 +8,7 @@ export const MovieList = ({ id, title, path }) => {
     <S.Card>
       <S.CardLink to={`${id}`}>
         <S.Poster src={`https://image.tmdb.org/t/p/w500${path}`} alt={title} />
-        <MovieInfo title={title} />
+        <S.MovieTitle>{title}</S.MovieTitle>.
       </S.CardLink>
     </S.Card>
   );
