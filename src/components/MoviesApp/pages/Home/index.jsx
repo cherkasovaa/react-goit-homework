@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { MovieInfo, MovieList } from '../MovieList';
+import { getMovies } from '../api/API.js';
 import * as S from './style';
 
 export const Home = params => {
   const [movies, setMovies] = useState([]);
 
-  const request =
-    'https://api.themoviedb.org/3/trending/all/day?api_key=29cf81a599ffabad205843cb29ab1462';
-
   useEffect(() => {
-    fetch(request)
+    fetch(getMovies())
       .then(res => res.json())
       .then(data => {
         setMovies(data.results);

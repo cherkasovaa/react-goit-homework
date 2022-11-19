@@ -8,9 +8,7 @@ import { Movies } from './pages/Movies';
 import * as S from './styles';
 import { theme } from './variables';
 
-// TODO: create homepage template
 // TODO: create post template and style
-// TODO: render thrending movies from API
 // TODO: render search movies
 // TODO: add back button
 // TODO: add color theme
