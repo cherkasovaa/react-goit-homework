@@ -4,6 +4,7 @@ import { BoxStyled } from 'App.styled';
 import { Phonebook } from 'components/Phonebook/Phonebook';
 import { ImageGalleryApp } from 'components/ImageGallery/ImageGalleryApp';
 import { Navigation } from 'components/Navigation/Navigation';
+import { MoviesApp } from 'components/MoviesApp';
 
 export class App extends Component {
   state = {
@@ -53,12 +54,13 @@ export class App extends Component {
   };
 
   render() {
-    const btns = ['Phonebook', 'Feedback', 'Image Gallery App'];
+    // const btns = ['Phonebook', 'Feedback', 'Image Gallery App'];
     return (
-      <>
-        {<Navigation showProject={this.showProject} list={btns} />}
-        <BoxStyled>{this.getView(this.state.project)}</BoxStyled>
-      </>
+      <MoviesApp />
+      // <>
+      //   {<Navigation showProject={this.showProject} list={btns} />}
+      //   <BoxStyled>{this.getView(this.state.project)}</BoxStyled>
+      // </>
     );
   }
 }
