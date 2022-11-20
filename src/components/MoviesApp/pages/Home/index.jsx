@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { MovieInfo, MovieList } from '../MovieList';
-import { getMovies, getTrendsMovies } from '../api/API.js';
+import { MovieItem } from '../MovieItem';
+import { getTrendsMovies } from '../api/API.js';
 import * as S from './style';
 import { Loader } from 'components/MoviesApp/components/Loader';
 
@@ -12,7 +12,6 @@ export const Home = params => {
   useEffect(() => {
     setIsLoading(true);
     const promise = getTrendsMovies();
-
     promise.then(data => {
       console.log(data);
       setIsLoading(false);
@@ -27,7 +26,7 @@ export const Home = params => {
         {isLoading && <Loader />}
         {!isLoading &&
           movies.map(({ id, poster_path, original_name, original_title }) => (
-            <MovieList
+            <MovieItem
               key={id}
               id={id}
               path={poster_path}
