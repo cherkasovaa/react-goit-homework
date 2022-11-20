@@ -7,12 +7,6 @@ export const Container = styled.main`
 `;
 
 export const Header = styled.h1`
+  font-size: 2.5rem;
   margin-bottom: 20px;
-`;
-
-export const MovieList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 15px;
 `;
