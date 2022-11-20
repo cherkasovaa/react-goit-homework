@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { MovieInfo } from '../MovieInfo';
 import * as S from './styles';
 
-export const MovieList = ({ id, title, path }) => {
+export const MovieItem = ({ id, title, path }) => {
   return (
     <S.Card>
       <S.CardLink to={`${id}`}>
