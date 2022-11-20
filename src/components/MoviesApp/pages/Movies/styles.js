@@ -4,7 +4,6 @@ export const Container = styled.main`
   max-width: 80%;
   margin: 0 auto;
   padding: 30px 0;
-  min-height: 94vh;
 `;
 
 export const Form = styled.form`
@@ -35,7 +34,7 @@ export const SearchButton = styled.button`
     rgba(0, 231, 57, 1) 0%,
     rgba(0, 20, 221, 1) 100%
   );
-  color: ${props => props.theme.primaryFontColor};
+  color: inherit;
   border: 0;
   border-radius: 30px;
   outline: 0;

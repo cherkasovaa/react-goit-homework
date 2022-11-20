@@ -23,5 +23,4 @@ export const Name = styled.p`
 
 export const Info = styled.p`
   font-size: 1.1rem;
-  color: ${props => props.theme.primaryFontColor};
 `;

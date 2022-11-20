@@ -7,7 +7,6 @@ export const Container = styled.main`
 `;
 
 export const Header = styled.h1`
-  color: ${props => props.theme.primaryFontColor};
   margin-bottom: 20px;
 `;
 

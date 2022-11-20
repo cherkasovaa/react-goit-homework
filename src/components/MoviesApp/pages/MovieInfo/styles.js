@@ -5,7 +5,6 @@ const { default: styled } = require('styled-components');
 export const MovieInfo = styled.p`
   font-size: 18px;
   letter-spacing: 0.5px;
-  color: ${props => props.theme.primaryFontColor};
   transition: 0.3s;
 
   &:hover {
@@ -16,7 +15,6 @@ export const MovieInfo = styled.p`
 export const Main = styled.main`
   width: 90%;
   margin: 0 auto;
-  min-height: 94vh;
 
   padding: 20px 0;
 `;
@@ -25,7 +23,6 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 18px;
   padding: 15px 0;
-  color: ${props => props.theme.primaryFontColor};
 `;
 
 export const Poster = styled.img`
@@ -73,10 +70,9 @@ export const GenreBox = styled.div`
 
 export const Button = styled(Link)`
   text-decoration: none;
-  /* background: transparent; */
   border: 1px solid ${props => props.theme.primaryFontColor};
   border-radius: 4px;
-  color: ${props => props.theme.primaryFontColor};
+  color: inherit;
   padding: 8px 16px;
   cursor: pointer;
   transition: 0.3s;
