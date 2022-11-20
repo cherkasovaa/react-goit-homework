@@ -10,13 +10,12 @@ import { Movies } from './pages/Movies';
 import * as S from './styles';
 import { theme } from './variables';
 
-// TODO: render search movies
 // TODO: add color theme
 
 export const MoviesApp = () => {
   const navLinksArray = [
-    { name: 'home', path: '/', page: <Home /> },
-    { name: 'movies', path: '/movies', page: <Movies /> },
+    { name: 'home', path: '/' },
+    { name: 'movies', path: '/movies' },
   ];
 
   return (
@@ -24,10 +23,14 @@ export const MoviesApp = () => {
       <S.Container>
         <Header links={navLinksArray} />
         <Routes>
-          {navLinksArray.map(({ name, path, page }) => (
-            <Route key={name} path={path} element={page} />
-          ))}
+          <Route path="/" element={<Home />} />
           <Route path="/:id" element={<MovieInfo />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:id" element={<MovieInfo />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
