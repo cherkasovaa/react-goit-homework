@@ -11,7 +11,6 @@ import * as S from './styles';
 import { theme } from './variables';
 
 // TODO: render search movies
-// TODO: add back button
 // TODO: add color theme
 
 export const MoviesApp = () => {

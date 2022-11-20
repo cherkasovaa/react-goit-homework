@@ -13,11 +13,18 @@ export const MovieInfo = styled.p`
   }
 `;
 
-export const Wrapper = styled.main`
+export const Main = styled.main`
+  width: 90%;
+  margin: 0 auto;
   min-height: 94vh;
-  padding: 30px;
+
+  padding: 20px 0;
+`;
+
+export const Wrapper = styled.div`
   display: flex;
   gap: 18px;
+  padding: 15px 0;
   color: ${props => props.theme.primaryFontColor};
 `;
 
@@ -62,4 +69,20 @@ export const GenreBox = styled.div`
   display: flex;
   gap: 8px;
   font-size: 0.8rem;
+`;
+
+export const Button = styled(Link)`
+  text-decoration: none;
+  /* background: transparent; */
+  border: 1px solid ${props => props.theme.primaryFontColor};
+  border-radius: 4px;
+  color: ${props => props.theme.primaryFontColor};
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    border: 1px solid ${props => props.theme.highlightFontColor};
+    color: ${props => props.theme.highlightFontColor};
+  }
 `;
