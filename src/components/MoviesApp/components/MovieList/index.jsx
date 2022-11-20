@@ -1,29 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { MovieItem } from 'components/MoviesApp/pages/MovieItem';
-import { useState } from 'react';
 import { Loader } from '../Loader';
-import { getTrendsMovies } from 'components/MoviesApp/pages/api/API';
 
 import * as S from './styles';
 
-export const MovieList = () => {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const promise = getTrendsMovies();
-    promise.then(data => {
-      setIsLoading(false);
-      setMovies(data);
-    });
-  }, []);
-
+export const MovieList = ({ list, isLoading }) => {
   return (
     <S.MovieList>
       {isLoading && <Loader />}
       {!isLoading &&
-        movies.map(({ id, poster_path, original_name, original_title }) => (
+        list.map(({ id, poster_path, original_name, original_title }) => (
           <MovieItem
             key={id}
             id={id}

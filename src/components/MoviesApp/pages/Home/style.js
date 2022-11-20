@@ -6,7 +6,7 @@ export const Container = styled.main`
   padding: 30px 0;
 `;
 
-export const Header = styled.h1`
+export const Title = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 20px;
 `;

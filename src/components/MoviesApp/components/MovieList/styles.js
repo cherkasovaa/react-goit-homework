@@ -5,4 +5,5 @@ export const MovieList = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 15px;
+  padding-top: 30px;
 `;
