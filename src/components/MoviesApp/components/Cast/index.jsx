@@ -17,9 +17,9 @@ export const Cast = () => {
 
   return (
     <S.List>
-      {cast.map(({ name, profile_path, character }) => {
+      {cast.map(({ id, name, profile_path, character }) => {
         return (
-          <S.CardWrapper key={name}>
+          <S.CardWrapper key={id}>
             <S.ProfileImage
               src={`https://image.tmdb.org/t/p/w500${profile_path}`}
               alt={name}
