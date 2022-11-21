@@ -8,7 +8,6 @@ export const Card = styled.div`
 export const Poster = styled.img`
   border-radius: 10px;
   width: 100%;
-  height: auto;
   margin-bottom: 7px;
 `;
 
