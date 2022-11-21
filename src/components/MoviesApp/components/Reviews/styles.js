@@ -20,7 +20,3 @@ export const CardWrapper = styled.li`
 export const Name = styled.p`
   font-weight: bold;
 `;
-
-export const Info = styled.p`
-  font-size: 1.1rem;
-`;
