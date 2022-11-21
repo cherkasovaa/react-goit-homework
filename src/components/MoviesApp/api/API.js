@@ -2,7 +2,6 @@ const API_KEY = '29cf81a599ffabad205843cb29ab1462';
 
 export const getMovies = query => {
   const request = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
-  // const request = `https://api.themoviedb.org/3/search/movie?api_key=29cf81a599ffabad205843cb29ab1462&query=batman`;
 
   return fetch(request)
     .then(res => res.json())

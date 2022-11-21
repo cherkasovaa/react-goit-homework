@@ -1,4 +1,4 @@
-import { getCredits } from 'components/MoviesApp/pages/api/API';
+import { getCredits } from 'components/MoviesApp/api/API';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { LackInfo } from '../LackInfo';

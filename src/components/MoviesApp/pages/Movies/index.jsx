@@ -1,7 +1,7 @@
 import { Form } from 'components/MoviesApp/components/Form';
 import { MovieList } from 'components/MoviesApp/components/MovieList';
 import React, { useState } from 'react';
-import { getMovies } from '../api/API';
+import { getMovies } from '../../api/API';
 import * as S from './styles';
 
 export const Movies = () => {

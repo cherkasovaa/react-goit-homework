@@ -1,7 +1,7 @@
 import { Loader } from 'components/ImageGallery/Loader';
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
-import { getMovieById } from '../api/API';
+import { getMovieById } from '../../api/API';
 import * as S from './styles';
 
 export const MovieInfo = () => {

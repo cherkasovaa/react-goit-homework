@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getReviews } from 'components/MoviesApp/pages/api/API';
+import { getReviews } from 'components/MoviesApp/api/API';
 
 import * as S from './styles';
 import { LackInfo } from '../LackInfo';
