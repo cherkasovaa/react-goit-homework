@@ -7,7 +7,10 @@ export const MovieItem = ({ id, title, path }) => {
 
   return (
     <S.Card>
-      <S.CardLink to={`${id}`} state={{ from: location }}>
+      <S.CardLink
+        to={`${id}`}
+        state={{ from: `${location.pathname}${location.search}` }}
+      >
         <S.Poster src={`https://image.tmdb.org/t/p/w500${path}`} alt={title} />
         <S.MovieTitle>{title}</S.MovieTitle>.
       </S.CardLink>

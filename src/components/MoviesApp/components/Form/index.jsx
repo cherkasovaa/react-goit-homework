@@ -8,7 +8,7 @@ export const Form = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams('');
+    // setSearchParams('');
     return onSubmit(query);
   };
 
