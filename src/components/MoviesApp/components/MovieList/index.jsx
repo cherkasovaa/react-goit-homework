@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MovieItem } from 'components/MoviesApp/pages/MovieItem';
 import { Loader } from '../Loader';
 
@@ -19,4 +20,20 @@ export const MovieList = ({ list, isLoading }) => {
         ))}
     </S.MovieList>
   );
+};
+
+MovieList.defaultProptypes = {
+  list: [],
+  isLoading: false,
+};
+
+MovieList.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string,
+      original_name: PropTypes.string,
+      original_title: PropTypes.string,
+    })
+  ),
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as S from './styles';
 
 export const Form = ({ onSubmit }) => {
@@ -24,4 +25,12 @@ export const Form = ({ onSubmit }) => {
       <S.SearchButton type="submit">Search</S.SearchButton>
     </S.Form>
   );
+};
+
+Form.defaultProptypes = {
+  onSubmit: () => {},
+};
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
