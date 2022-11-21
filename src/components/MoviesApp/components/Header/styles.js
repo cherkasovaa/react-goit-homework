@@ -6,6 +6,13 @@ export const Header = styled.header`
   box-shadow: 3px 0 10px rgba(0, 0, 0, 1);
 `;
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+`;
+
 export const Navigation = styled.nav`
   display: flex;
   gap: 15px;

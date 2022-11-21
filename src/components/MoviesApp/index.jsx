@@ -1,27 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { Cast } from './components/Cast';
 import Header from './components/Header';
+import { Cast } from './components/Cast';
 import { Reviews } from './components/Reviews';
 import { Home } from './pages/Home';
 import { MovieInfo } from './pages/MovieInfo';
 import { Movies } from './pages/Movies';
+
 import * as S from './styles';
 import { theme } from './variables';
 
-// TODO: add color theme
-
 export const MoviesApp = () => {
+  const [isDark, setIsDark] = useState(
+    !JSON.parse(window.localStorage.getItem('switcherOn')) ?? true
+  );
+
   const navLinksArray = [
     { name: 'home', path: '/' },
     { name: 'movies', path: '/movies' },
   ];
 
+  const checkTheme = value => {
+    setIsDark(value);
+  };
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={isDark ? theme.dark : theme.light}>
       <S.Container>
-        <Header links={navLinksArray} />
+        <Header links={navLinksArray} checkTheme={checkTheme} />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:id" element={<MovieInfo />}>

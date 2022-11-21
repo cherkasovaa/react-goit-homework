@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Switch from 'react-switch';
 import * as S from './styles';
 
-const Header = ({ links }) => {
+const Header = ({ links, checkTheme }) => {
+  const [checkedTheme, setCheckedTheme] = useState(
+    JSON.parse(window.localStorage.getItem('switcherOn')) ?? false
+  );
   const capitalize = value => value.slice(0, 1).toUpperCase() + value.slice(1);
+
+  const handleChange = () => {
+    setCheckedTheme(!checkedTheme);
+    window.localStorage.setItem('switcherOn', JSON.stringify(!checkedTheme));
+    return checkTheme(checkedTheme);
+  };
 
   return (
     <S.Header>
-      <S.Navigation>
-        {links.map(({ name, path }) => (
-          <S.MenuLink key={name} to={path}>
-            {capitalize(name)}
-          </S.MenuLink>
-        ))}
-      </S.Navigation>
+      <S.Container>
+        <S.Navigation>
+          {links.map(({ name, path }) => (
+            <S.MenuLink key={name} to={path}>
+              {capitalize(name)}
+            </S.MenuLink>
+          ))}
+        </S.Navigation>
+        <Switch
+          onChange={handleChange}
+          checked={checkedTheme}
+          width={40}
+          height={20}
+          onColor="#333679"
+          uncheckedIcon={false}
+          checkedIcon={false}
+        />
+      </S.Container>
     </S.Header>
   );
 };
