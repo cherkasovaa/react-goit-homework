@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { LackInfo } from '../LackInfo';
 
+import unknown from './unknown_human.png';
+
 import * as S from './styles';
 
 export const Cast = () => {
@@ -16,16 +18,19 @@ export const Cast = () => {
     });
   }, [id]);
 
+  const renderProfileImage = path =>
+    path ? `https://image.tmdb.org/t/p/w500${path}` : unknown;
+
   return (
     <S.List>
-      {cast.length >= 0 ? (
+      {cast.length <= 0 ? (
         <LackInfo>We have no information about the cast</LackInfo>
       ) : (
         cast.map(({ id, name, profile_path, character }) => {
           return (
             <S.CardWrapper key={id}>
               <S.ProfileImage
-                src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                src={renderProfileImage(profile_path)}
                 alt={name}
               />
               <S.Info>
