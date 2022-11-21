@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MovieItem } from 'components/MoviesApp/pages/MovieItem';
+import { MovieItem } from 'components/MoviesApp/components/MovieItem';
 import { Loader } from '../Loader';
 
 import * as S from './styles';
