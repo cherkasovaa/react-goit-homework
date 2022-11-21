@@ -16,7 +16,6 @@ export const MovieInfo = () => {
     setIsLoading(true);
     const promise = getMovieById(Number(id));
     promise.then(data => {
-      console.log(data);
       setMovie(data);
       setIsLoading(false);
     });
@@ -30,10 +29,12 @@ export const MovieInfo = () => {
           <S.Button to={backLinkHref}>Go Back</S.Button>
           <S.Wrapper>
             <div>
-              <S.Poster
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.original_title}
-              />
+              {movie.poster_path && (
+                <S.Poster
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.original_title}
+                />
+              )}
             </div>
             <S.InfoWrapper>
               <S.Box>
