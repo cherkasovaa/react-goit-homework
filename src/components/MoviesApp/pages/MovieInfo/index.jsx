@@ -21,6 +21,14 @@ export const MovieInfo = () => {
     });
   }, [id]);
 
+  const renderYear = () => {
+    return movie.release_date
+      ? `${movie.original_title} (${new Date(
+          movie.release_date
+        ).getFullYear()})`
+      : `${movie.original_title}`;
+  };
+
   return (
     <>
       {isLoading && <Loader />}
@@ -38,10 +46,7 @@ export const MovieInfo = () => {
             </div>
             <S.InfoWrapper>
               <S.Box>
-                <S.Title>
-                  {movie.original_title}(
-                  {new Date(movie.release_date).getFullYear()})
-                </S.Title>
+                <S.Title>{renderYear()}</S.Title>
                 <S.GenreBox>
                   {movie.hasOwnProperty('genres') &&
                     movie.genres.map(({ id, name }) => <p key={id}>{name}</p>)}
