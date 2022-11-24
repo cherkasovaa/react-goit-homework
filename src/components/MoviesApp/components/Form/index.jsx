@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as S from './styles';
 
 export const Form = ({ onSubmit }) => {
   const [value, setValue] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query') || '';
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams({ query: value });
-    setValue('');
+
     return onSubmit(value);
   };
 
