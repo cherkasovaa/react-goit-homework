@@ -1,6 +1,6 @@
 import { Form } from 'components/MoviesApp/components/Form';
 import { MovieList } from 'components/MoviesApp/components/MovieList';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { getMovies } from '../../api/API';
 import * as S from './styles';
 
@@ -9,6 +9,8 @@ export const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = query => {
+    if (!query) return;
+
     setIsLoading(true);
     const promise = getMovies(query);
 
