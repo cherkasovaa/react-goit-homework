@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
-const { default: styled } = require('styled-components');
+import styled from 'styled-components';
+import { deviceSize } from 'components/MoviesApp/variables';
 
 export const MovieInfo = styled.p`
   font-size: 18px;
@@ -13,7 +14,7 @@ export const MovieInfo = styled.p`
 `;
 
 export const Main = styled.main`
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
 
   padding: 20px 0;
@@ -23,6 +24,11 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 18px;
   padding: 15px 0;
+
+  @media (max-width: ${deviceSize.medium}) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Poster = styled.img`
@@ -69,11 +75,12 @@ export const GenreBox = styled.div`
 `;
 
 export const Button = styled(Link)`
+  display: inline-block;
   text-decoration: none;
   border: 1px solid ${props => props.theme.primaryFontColor};
   border-radius: 4px;
   color: inherit;
-  padding: 8px 16px;
+  padding: 5px 16px;
   cursor: pointer;
   transition: 0.3s;
 

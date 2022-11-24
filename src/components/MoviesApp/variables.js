@@ -10,3 +10,9 @@ export const theme = {
     highlightFontColor: '#fff',
   },
 };
+
+export const deviceSize = {
+  xsmall: '460px',
+  small: '576px',
+  medium: '768px',
+};

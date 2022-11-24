@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { deviceSize } from 'components/MoviesApp/variables';
 
 export const Card = styled.div`
   width: 150px;
+
+  @media (max-width: ${deviceSize.small}) {
+    width: 100%;
+  }
 `;
 
 export const Poster = styled.img`

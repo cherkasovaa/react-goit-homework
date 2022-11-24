@@ -1,9 +1,14 @@
 import styled from 'styled-components';
+import { deviceSize } from 'components/MoviesApp/variables';
 
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 35px;
+
+  @media (max-width: ${deviceSize.small}) {
+    justify-content: center;
+  }
 `;
 
 export const CardWrapper = styled.li`
@@ -13,6 +18,18 @@ export const CardWrapper = styled.li`
   color: #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   overflow: hidden;
+
+  @media (max-width: ${deviceSize.medium}) {
+    width: calc(100% / 3.5);
+  }
+
+  @media (max-width: ${deviceSize.small}) {
+    width: 50%;
+  }
+
+  @media (max-width: ${deviceSize.xsmall}) {
+    width: 70%;
+  }
 `;
 
 export const ProfileImage = styled.img`
