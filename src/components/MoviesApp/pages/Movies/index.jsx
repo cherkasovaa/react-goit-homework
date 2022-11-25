@@ -9,7 +9,7 @@ const MovieList = lazy(() =>
   import('components/MoviesApp/components/MovieList/MovieList')
 );
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -45,3 +45,5 @@ export const Movies = () => {
     </S.Container>
   );
 };
+
+export default Movies;

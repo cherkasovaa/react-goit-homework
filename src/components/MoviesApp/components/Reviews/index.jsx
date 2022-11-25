@@ -5,7 +5,7 @@ import { getReviews } from 'components/MoviesApp/api/API';
 import * as S from './styles';
 import { LackInfo } from '../LackInfo';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { id } = useParams();
 
@@ -31,3 +31,5 @@ export const Reviews = () => {
     </S.List>
   );
 };
+
+export default Reviews;

@@ -7,7 +7,7 @@ import unknown from './unknown_human.png';
 
 import * as S from './styles';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
   const { id } = useParams();
 
@@ -44,3 +44,5 @@ export const Cast = () => {
     </S.List>
   );
 };
+
+export default Cast;
