@@ -5,11 +5,12 @@ import { Loader } from 'components/ImageGallery/Loader';
 import { Form } from 'components/MoviesApp/components/Form';
 import * as S from './styles';
 
-const MovieList = lazy(() => import('../../components/MovieList/MovieList'));
+const MovieList = lazy(() =>
+  import('components/MoviesApp/components/MovieList/MovieList')
+);
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const searchValue = searchParams.get('query');
@@ -17,11 +18,9 @@ export const Movies = () => {
   useEffect(() => {
     if (!query && !searchValue) return;
 
-    setIsLoading(true);
     const promise = getMovies(query || searchValue);
 
     promise.then(data => {
-      setIsLoading(false);
       setMovies(data);
     });
   }, [query, searchValue]);
@@ -41,7 +40,7 @@ export const Movies = () => {
     <S.Container>
       <Form onSubmit={setQueryParam} />
       <Suspense fallback={<Loader />}>
-        <MovieList list={movies} isLoading={isLoading} />
+        <MovieList list={movies} />
       </Suspense>
     </S.Container>
   );
