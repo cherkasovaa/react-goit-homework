@@ -4,9 +4,9 @@ import { ThemeProvider } from 'styled-components';
 import Header from './components/Header';
 import { Cast } from './components/Cast';
 import { Reviews } from './components/Reviews';
-import { Home } from './pages/Home';
-import { MovieInfo } from './pages/MovieInfo';
 import { Movies } from './pages/Movies';
+import MovieInfo from './pages/MovieInfo';
+import Home from './pages/Home/Home';
 
 import * as S from './styles';
 import { theme } from './variables';

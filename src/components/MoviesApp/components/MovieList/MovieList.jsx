@@ -5,7 +5,7 @@ import { Loader } from '../Loader';
 
 import * as S from './styles';
 
-export const MovieList = ({ list, isLoading }) => {
+const MovieList = ({ list, isLoading }) => {
   return (
     <S.MovieList>
       {isLoading && <Loader />}
@@ -21,6 +21,8 @@ export const MovieList = ({ list, isLoading }) => {
     </S.MovieList>
   );
 };
+
+export default MovieList;
 
 MovieList.defaultProptypes = {
   list: [],

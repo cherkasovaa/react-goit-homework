@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { MovieList } from 'components/MoviesApp/components/MovieList';
 import { getTrendsMovies } from '../../api/API';
+import MovieList from 'components/MoviesApp/components/MovieList/MovieList';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,3 +23,5 @@ export const Home = () => {
     </S.Container>
   );
 };
+
+export default Home;
