@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const promise = getTrendsMovies();
     promise.then(data => {
-      setMovies(data);
+      setMovies(data.results);
     });
   }, []);
 

@@ -21,7 +21,7 @@ const Movies = () => {
     const promise = getMovies(query || searchValue);
 
     promise.then(data => {
-      setMovies(data);
+      setMovies(data.results);
     });
   }, [query, searchValue]);
 
