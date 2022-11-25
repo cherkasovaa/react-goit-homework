@@ -1,9 +1,11 @@
-import { Form } from 'components/MoviesApp/components/Form';
-import { MovieList } from 'components/MoviesApp/components/MovieList';
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getMovies } from '../../api/API';
+import { Loader } from 'components/ImageGallery/Loader';
+import { Form } from 'components/MoviesApp/components/Form';
 import * as S from './styles';
+
+const MovieList = lazy(() => import('../../components/MovieList/MovieList'));
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -38,7 +40,9 @@ export const Movies = () => {
   return (
     <S.Container>
       <Form onSubmit={setQueryParam} />
-      <MovieList list={movies} isLoading={isLoading} />
+      <Suspense fallback={<Loader />}>
+        <MovieList list={movies} isLoading={isLoading} />
+      </Suspense>
     </S.Container>
   );
 };
