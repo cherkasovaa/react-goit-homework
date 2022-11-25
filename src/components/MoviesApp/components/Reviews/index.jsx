@@ -10,10 +10,7 @@ const Reviews = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const promise = getReviews(Number(id));
-    promise.then(data => {
-      setReviews(data.results);
-    });
+    getReviews(Number(id)).then(data => setReviews(data.results));
   }, [id]);
 
   return reviews.length <= 0 ? (

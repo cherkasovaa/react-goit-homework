@@ -10,12 +10,7 @@ const Info = () => {
   const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
-    // setIsLoading(true);
-    const promise = getMovieById(Number(id));
-    promise.then(data => {
-      setMovie(data);
-      // setIsLoading(false);
-    });
+    getMovieById(Number(id)).then(data => setMovie(data));
   }, [id]);
 
   const renderYear = () => {

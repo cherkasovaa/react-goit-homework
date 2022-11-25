@@ -12,10 +12,7 @@ const Cast = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const promise = getCredits(Number(id));
-    promise.then(data => {
-      setCast(data.cast);
-    });
+    getCredits(Number(id)).then(data => setCast(data.cast));
   }, [id]);
 
   const renderProfileImage = path =>

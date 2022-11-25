@@ -18,11 +18,7 @@ const Movies = () => {
   useEffect(() => {
     if (!query && !searchValue) return;
 
-    const promise = getMovies(query || searchValue);
-
-    promise.then(data => {
-      setMovies(data.results);
-    });
+    getMovies(query || searchValue).then(data => setMovies(data.results));
   }, [query, searchValue]);
 
   const setQueryParam = value => {

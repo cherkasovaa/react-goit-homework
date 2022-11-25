@@ -11,10 +11,7 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const promise = getTrendsMovies();
-    promise.then(data => {
-      setMovies(data.results);
-    });
+    getTrendsMovies().then(data => setMovies(data.results));
   }, []);
 
   return (
