@@ -4,7 +4,7 @@ import { Loader } from './Loader';
 const WithSuspense = Component => {
   return (
     <Suspense fallback={<Loader />}>
-      <Component />;
+      <Component />
     </Suspense>
   );
 };
