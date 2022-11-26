@@ -48,19 +48,20 @@ export class App extends Component {
         return <Feedback />;
       case 'imagegalleryapp':
         return <ImageGalleryApp />;
+      case 'movieapp':
+        return <MoviesApp />;
       default:
         return '';
     }
   };
 
   render() {
-    // const btns = ['Phonebook', 'Feedback', 'Image Gallery App'];
+    const btns = ['Phonebook', 'Feedback', 'Image Gallery App', 'Movie App'];
     return (
-      <MoviesApp />
-      // <>
-      //   {<Navigation showProject={this.showProject} list={btns} />}
-      //   <BoxStyled>{this.getView(this.state.project)}</BoxStyled>
-      // </>
+      <>
+        {<Navigation showProject={this.showProject} list={btns} />}
+        <BoxStyled>{this.getView(this.state.project)}</BoxStyled>
+      </>
     );
   }
 }
