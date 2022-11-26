@@ -1,46 +1,26 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Feedback } from 'components/Feedback/Feedback';
 import { BoxStyled } from 'App.styled';
 import { Phonebook } from 'components/Phonebook/Phonebook';
 import { ImageGalleryApp } from 'components/ImageGallery/ImageGalleryApp';
 import { Navigation } from 'components/Navigation/Navigation';
 import { MoviesApp } from 'components/MoviesApp';
+import { useEffect } from 'react';
 
-export class App extends Component {
-  state = {
-    isFeedback: true,
-    project: 'feedback',
-  };
+export const App = () => {
+  const KEY = 'project';
+  const isLocalData = localStorage.getItem(KEY);
+  const parseData = JSON.parse(isLocalData);
 
-  KEY = 'project';
+  const [project, setProject] = useState(parseData ?? 'feedback');
 
-  componentDidMount = () => {
-    const isLocalData = localStorage.getItem(this.KEY);
-    const parseData = JSON.parse(isLocalData);
+  useEffect(() => {
+    localStorage.setItem(KEY, JSON.stringify(project));
+  }, [project]);
 
-    if (parseData !== null) {
-      this.setState({
-        [this.KEY]: parseData,
-      });
-    }
-  };
+  const showProject = id => setProject(id);
 
-  componentDidUpdate = prevState => {
-    localStorage.setItem(this.KEY, JSON.stringify(this.state.project));
-  };
-
-  showProject = id => {
-    this.setState({ project: id });
-  };
-
-  normalizeName = value => {
-    return value
-      .split(' ')
-      .map(el => el.toLowerCase())
-      .join('');
-  };
-
-  getView = value => {
+  const getView = value => {
     switch (value) {
       case 'phonebook':
         return <Phonebook />;
@@ -55,13 +35,19 @@ export class App extends Component {
     }
   };
 
-  render() {
-    const btns = ['Phonebook', 'Feedback', 'Image Gallery App', 'Movie App'];
-    return (
-      <>
-        {<Navigation showProject={this.showProject} list={btns} />}
-        <BoxStyled>{this.getView(this.state.project)}</BoxStyled>
-      </>
-    );
-  }
-}
+  const btns = ['Phonebook', 'Feedback', 'Image Gallery App', 'Movie App'];
+  return (
+    <>
+      {<Navigation showProject={showProject} list={btns} />}
+      <BoxStyled>
+        {getView(project)}
+        {/* <Routes>
+          <Route path={location.path + '/phonebook'} element={<Phonebook />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/imagegalleryapp" element={<ImageGalleryApp />} />
+          <Route path={location.path + '/movieapp'} element={<MoviesApp />} />
+        </Routes> */}
+      </BoxStyled>
+    </>
+  );
+};
