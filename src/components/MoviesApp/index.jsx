@@ -13,8 +13,6 @@ const Home = lazy(() => import('./pages/Home/Home'));
 const Movies = lazy(() => import('./pages/Movies'));
 const MovieInfo = lazy(() => import('./pages/MovieInfo'));
 
-// FIXME hightlight navigation links
-
 export const MoviesApp = () => {
   const [isDark, setIsDark] = useState(
     !JSON.parse(window.localStorage.getItem('switcherOn')) ?? true

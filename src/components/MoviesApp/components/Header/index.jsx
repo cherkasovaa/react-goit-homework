@@ -19,11 +19,17 @@ const Header = ({ links, checkTheme }) => {
     <S.Header>
       <S.Container>
         <S.Navigation>
-          {links.map(({ name, path }) => (
-            <S.MenuLink key={name} to={path}>
-              {capitalize(name)}
-            </S.MenuLink>
-          ))}
+          {links.map(({ name, path, isFirst }) => {
+            return isFirst ? (
+              <S.MenuLink key={name} to={path} end>
+                {capitalize(name)}
+              </S.MenuLink>
+            ) : (
+              <S.MenuLink key={name} to={path}>
+                {capitalize(name)}
+              </S.MenuLink>
+            );
+          })}
         </S.Navigation>
         <Switch
           onChange={handleChange}
@@ -43,6 +49,7 @@ export default Header;
 
 Header.defaultProps = {
   links: [],
+  checkTheme: () => {},
 };
 
 Header.propTypes = {
@@ -52,4 +59,5 @@ Header.propTypes = {
       path: PropTypes.string.isRequired,
     })
   ),
+  checkTheme: PropTypes.func.isRequired,
 };
