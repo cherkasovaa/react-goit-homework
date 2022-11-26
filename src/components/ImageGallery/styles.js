@@ -5,6 +5,7 @@ export const AppStyled = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 16px;
   padding-bottom: 24px;
+  width: 100%;
 `;
 
 export const WrapperStyled = styled.header`

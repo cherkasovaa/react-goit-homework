@@ -4,13 +4,16 @@ import { slide as Menu } from 'react-burger-menu';
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
-    width: '36px',
-    height: '30px',
-    left: '36px',
-    top: '36px',
+    width: '26px',
+    height: '20px',
+    left: '15px',
+    top: '10px',
+    zIndex: '9999',
   },
   bmBurgerBars: {
-    background: '#373a47',
+    background: '#ffffff',
+    borderRadius: '4px',
+    transition: '0.5s',
   },
   bmBurgerBarsHover: {
     background: '#a90000',
@@ -20,11 +23,12 @@ var styles = {
     width: '24px',
   },
   bmCross: {
-    background: '#bdc3c7',
+    background: '#ffffff', //'#bdc3c7',
   },
   bmMenuWrap: {
     position: 'fixed',
     height: '100%',
+    zIndex: '9999',
   },
   bmMenu: {
     background: '#373a47',
@@ -38,11 +42,11 @@ var styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '15px',
-    color: '#b8b7ad',
+    color: '#ffffff', //'#b8b7ad'
     padding: '0.8em',
   },
   bmItem: {
-    color: '#b8b7ad',
+    color: '#b8b7ad', // '#b8b7ad'
     textDecoration: 'none',
     display: 'inline-block',
   },

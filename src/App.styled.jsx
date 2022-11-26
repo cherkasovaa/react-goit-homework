@@ -7,7 +7,6 @@ export const BoxStyled = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  padding: 30px;
 `;
 
 export const ButtonStyled = styled.button`
