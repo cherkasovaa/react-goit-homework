@@ -13,14 +13,16 @@ const Home = lazy(() => import('./pages/Home/Home'));
 const Movies = lazy(() => import('./pages/Movies'));
 const MovieInfo = lazy(() => import('./pages/MovieInfo'));
 
+// FIXME hightlight navigation links
+
 export const MoviesApp = () => {
   const [isDark, setIsDark] = useState(
     !JSON.parse(window.localStorage.getItem('switcherOn')) ?? true
   );
 
   const navLinksArray = [
-    { name: 'home', path: '/' },
-    { name: 'movies', path: '/movies' },
+    { name: 'home', path: '/react-goit-homework', isFirst: true },
+    { name: 'movies', path: '/react-goit-homework/movies', isFirst: false },
   ];
 
   const checkTheme = value => {
@@ -33,14 +35,26 @@ export const MoviesApp = () => {
         <Header links={navLinksArray} checkTheme={checkTheme} />
 
         <Routes>
-          <Route path="/" element={WithSuspense(Home)} />
-          <Route path="/:id" element={WithSuspense(MovieInfo)}>
+          <Route
+            path="react-goit-homework/"
+            element={WithSuspense(Home)}
+          ></Route>
+          <Route
+            path="react-goit-homework/:id"
+            element={WithSuspense(MovieInfo)}
+          >
             <Route path="cast" element={WithSuspense(Cast)} />
             <Route path="reviews" element={WithSuspense(Reviews)} />
           </Route>
 
-          <Route path="/movies" element={WithSuspense(Movies)} />
-          <Route path="/movies/:id" element={WithSuspense(MovieInfo)}>
+          <Route
+            path="/react-goit-homework/movies"
+            element={WithSuspense(Movies)}
+          />
+          <Route
+            path="/react-goit-homework/movies/:id"
+            element={WithSuspense(MovieInfo)}
+          >
             <Route path="cast" element={WithSuspense(Cast)} />
             <Route path="reviews" element={WithSuspense(Reviews)} />
           </Route>

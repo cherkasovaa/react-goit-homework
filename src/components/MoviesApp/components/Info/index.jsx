@@ -7,7 +7,7 @@ const Info = () => {
   const [movie, setMovie] = useState({});
   const { id } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = location.state?.from ?? '/react-goit-homework';
 
   useEffect(() => {
     getMovieById(Number(id)).then(data => setMovie(data));
