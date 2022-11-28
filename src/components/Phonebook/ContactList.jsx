@@ -1,7 +1,14 @@
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { useVisibleContacts } from './hooks/useVisibleContacts';
 import { ContactsListStyle } from './Phonebook.styled';
+import { deleteContact } from './redux/actions';
 
-export const ContactList = ({ contacts, deleteUser }) => {
+export const ContactList = () => {
+  const contacts = useVisibleContacts();
+  const dispatch = useDispatch();
+
+  const handleDelete = e => dispatch(deleteContact(e.target.id));
+
   return (
     <ContactsListStyle>
       {contacts.map(({ id, name, number }) => (
@@ -13,27 +20,11 @@ export const ContactList = ({ contacts, deleteUser }) => {
           }}
         >
           {name}: {number}
-          <button name={id} onClick={() => deleteUser(id)}>
+          <button id={id} onClick={handleDelete}>
             delete
           </button>
         </li>
       ))}
     </ContactsListStyle>
   );
-};
-
-ContactList.defaultProps = {
-  contacts: [],
-  deleteUser: () => {},
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    })
-  ),
-  deleteUser: PropTypes.func,
 };

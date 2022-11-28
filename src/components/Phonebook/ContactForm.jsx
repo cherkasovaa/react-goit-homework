@@ -1,17 +1,22 @@
-import PropTypes from 'prop-types';
 import { ButtonStyle, FormStyled, InputSyled } from './Phonebook.styled';
 import { Formik } from 'formik';
-import { nanoid } from 'nanoid';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from './redux/actions';
+import { getContacts } from './redux/selectors';
 
 const initialValues = {
   name: '',
   number: '',
 };
 
-export const ContactForm = ({ onChange }) => {
+export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+
+  const showAlert = name => alert(`${name} is already in contacts`);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -29,18 +34,11 @@ export const ContactForm = ({ onChange }) => {
   };
 
   const handleSubmit = () => {
-    addNewContact(name, number);
+    contacts.some(contact => contact.name.includes(name))
+      ? showAlert(name)
+      : dispatch(addContact(name, number));
+
     reset();
-  };
-
-  const addNewContact = (name, number) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-
-    onChange(contact);
   };
 
   const reset = () => {
@@ -76,12 +74,4 @@ export const ContactForm = ({ onChange }) => {
       </FormStyled>
     </Formik>
   );
-};
-
-ContactForm.defaultProps = {
-  onChange: () => {},
-};
-
-ContactForm.propTypes = {
-  onChange: PropTypes.func,
 };

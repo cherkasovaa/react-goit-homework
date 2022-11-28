@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 import { FilterStyled, Title } from './Phonebook.styled';
 
 export const Filter = ({ value, onChange }) => {
