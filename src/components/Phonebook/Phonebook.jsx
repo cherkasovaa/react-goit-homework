@@ -4,7 +4,7 @@ import { Filter } from './Filter';
 import { ContactForm } from './ContactForm';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setFilter } from './redux/actions';
+import { setFilter } from './redux/filterSlice';
 
 export const Phonebook = () => {
   const [filterValue, setFilterValue] = useState('');

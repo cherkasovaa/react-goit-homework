@@ -2,7 +2,7 @@ import { ButtonStyle, FormStyled, InputSyled } from './Phonebook.styled';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from './redux/actions';
+import { addContact } from './redux/contactsSlice';
 import { getContacts } from './redux/selectors';
 
 const initialValues = {
