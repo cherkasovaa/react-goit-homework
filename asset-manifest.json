@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-goit-homework/static/css/main.80f9a164.css",
-    "main.js": "/react-goit-homework/static/js/main.e9406e72.js",
+    "main.js": "/react-goit-homework/static/js/main.842bd8fb.js",
     "static/js/935.bce22d71.chunk.js": "/react-goit-homework/static/js/935.bce22d71.chunk.js",
     "static/js/680.5a076202.chunk.js": "/react-goit-homework/static/js/680.5a076202.chunk.js",
     "static/js/906.9af1a035.chunk.js": "/react-goit-homework/static/js/906.9af1a035.chunk.js",
@@ -14,7 +14,7 @@
     "static/media/unknown.png": "/react-goit-homework/static/media/unknown.f357f48e61958a78bdeb.png",
     "index.html": "/react-goit-homework/index.html",
     "main.80f9a164.css.map": "/react-goit-homework/static/css/main.80f9a164.css.map",
-    "main.e9406e72.js.map": "/react-goit-homework/static/js/main.e9406e72.js.map",
+    "main.842bd8fb.js.map": "/react-goit-homework/static/js/main.842bd8fb.js.map",
     "935.bce22d71.chunk.js.map": "/react-goit-homework/static/js/935.bce22d71.chunk.js.map",
     "680.5a076202.chunk.js.map": "/react-goit-homework/static/js/680.5a076202.chunk.js.map",
     "906.9af1a035.chunk.js.map": "/react-goit-homework/static/js/906.9af1a035.chunk.js.map",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.80f9a164.css",
-    "static/js/main.e9406e72.js"
+    "static/js/main.842bd8fb.js"
   ]
 }
