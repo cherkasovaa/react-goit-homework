@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useVisibleContacts } from './hooks/useVisibleContacts';
 import { ContactsListStyle } from './Phonebook.styled';
-import { deleteContact } from './redux/contactsSlice';
+import { deleteContact } from './redux/operations';
 
 export const ContactList = () => {
   const contacts = useVisibleContacts();

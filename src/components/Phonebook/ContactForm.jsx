@@ -2,8 +2,8 @@ import { ButtonStyle, FormStyled, InputSyled } from './Phonebook.styled';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from './redux/contactsSlice';
 import { getContacts } from './redux/selectors';
+import { addContact } from './redux/operations';
 
 const initialValues = {
   name: '',
@@ -36,7 +36,7 @@ export const ContactForm = () => {
   const handleSubmit = () => {
     contacts.some(contact => contact.name.includes(name))
       ? showAlert(name)
-      : dispatch(addContact(name, number));
+      : dispatch(addContact({ name, number }));
 
     reset();
   };
